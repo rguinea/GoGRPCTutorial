@@ -36,7 +36,7 @@ func New(store Store) Service {
 // GetRocketByID - retrieves a rocket from the store by ID
 func (s Service) GetRocketByID(ctx context.Context, id string) (Rocket, error) {
 	log.Print(ctx)
-	rkt, err := s.Store.GetRocketById(id)
+	rkt, err := s.Store.GetRocketByID(id)
 	if err != nil {
 		return Rocket{}, err
 	}

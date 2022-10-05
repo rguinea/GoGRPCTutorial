@@ -46,13 +46,12 @@ func TestRocketService(t *testing.T) {
 			}, nil)
 
 		rocketService := New(rocketStoreMock)
-		rkt, err := rocketService.
-			InsertRocket(
-				context.Background(),
-				Rocket{
-					ID: id,
-				},
-			)
+		rkt, err := rocketService.AddRocket(
+			context.Background(),
+			Rocket{
+				ID: id,
+			},
+		)
 
 		assert.NoError(t, err)
 		assert.Equal(t, "UUID-1", rkt.ID)
@@ -69,6 +68,7 @@ func TestRocketService(t *testing.T) {
 		rocketService := New(rocketStoreMock)
 		err := rocketService.
 			DeleteRocket(
+				context.Background(),
 				id,
 			)
 
