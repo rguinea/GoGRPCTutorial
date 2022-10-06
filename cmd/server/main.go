@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/rguinea/GoGRPCTutorial/internal/db"
 	"github.com/rguinea/GoGRPCTutorial/internal/rocket"
+	"github.com/rguinea/GoGRPCTutorial/internal/transport/grpc"
 	"log"
 )
 
@@ -17,12 +18,14 @@ func Run() error {
 		log.Println("Failed to run migrations")
 		return err
 	}
-	err = rocketStore.Migrate()
-	if err != nil {
-		log.Println("Failed to run migrations")
+
+	rktService := rocket.New(rocketStore)
+
+	rktHandler := grpc.New(rktService)
+
+	if err := rktHandler.Serve(); err != nil {
 		return err
 	}
-	_ = rocket.New(rocketStore)
 
 	return nil
 }

@@ -8,10 +8,9 @@ import (
 
 // Rocket - should contain the definition of our Rocket
 type Rocket struct {
-	ID     string
-	Name   string
-	Type   string
-	Flight int
+	ID   string
+	Name string
+	Type string
 }
 
 // Store - Defines the expected interface for the DB implementation
